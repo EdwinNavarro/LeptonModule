@@ -38,6 +38,7 @@ void printUsage(char *cmd) {
 	return;
 }
 
+
 int main( int argc, char **argv )
 {
 	int typeColormap = 3; // colormap_ironblack
@@ -102,7 +103,7 @@ int main( int argc, char **argv )
 	QApplication a( argc, argv );
 	
 	QWidget *myWidget = new QWidget;
-	myWidget->setGeometry(400, 300, 340, 290);
+	myWidget->setGeometry(400, 300, 340, 400);
 
 	//create an image placeholder for myLabel
 	//fill the top left corner with red, just bcuz
@@ -121,8 +122,21 @@ int main( int argc, char **argv )
 	myLabel.setPixmap(QPixmap::fromImage(myImage));
 
 	//create a FFC button
-	QPushButton *button1 = new QPushButton("Perform FFC", myWidget);
-	button1->setGeometry(320/2-50, 290-35, 100, 30);
+//	QPushButton *button1 = new QPushButton("Perform FFC", myWidget);
+//	button1->setGeometry(320/2-50, 290-35, 100, 30);
+
+	QPushButton *button_up = new QPushButton("^", myWidget);
+	button_up->setGeometry(320 -100, 255, 30 , 30);
+
+
+	QPushButton *button_left = new QPushButton("<", myWidget);
+	button_left->setGeometry(320 -150, 305, 30 , 30);
+
+	QPushButton *button_right = new QPushButton(">", myWidget);
+	button_top->setGeometry(320 -50, 305, 30 , 30);
+
+	QPushButton *button_down = new QPushButton("v", myWidget);
+	button_down->setGeometry(320 -100, 355, 30 , 30);
 
 	//create a thread to gather SPI data
 	//when the thread emits updateImage, the label should update its image accordingly
@@ -136,8 +150,28 @@ int main( int argc, char **argv )
 	if (0 <= rangeMax) thread->useRangeMaxValue(rangeMax);
 	QObject::connect(thread, SIGNAL(updateImage(QImage)), &myLabel, SLOT(setImage(QImage)));
 	
-	//connect ffc button to the thread's ffc action
-	QObject::connect(button1, SIGNAL(clicked()), thread, SLOT(performFFC()));
+	////connect ffc button to the thread's ffc action
+	//QObject::connect(button1, SIGNAL(clicked()), thread, SLOT(performFFC()));
+	
+
+	//FIREBOT BUTTONS
+
+	//Button up
+	QObject::connect(button_up, SIGNAL(pressed()), thread, SLOT(moveUp()));
+	QObject::connect(button_up, SIGNAL(released()), thread, SLOT(stopPitch()));
+
+	//button down
+	QObject::connect(button_down, SIGNAL(pressed()), thread, SLOT(moveDown()));
+	QObject::connect(button_up, SIGNAL(released()), thread, SLOT(stopPitch()));
+
+	//button left
+	QObject::connect(button_left, SIGNAL(pressed()), thread, SLOT(moveLeft()));
+	QObject::connect(button_up, SIGNAL(released()), thread, SLOT(stopYaw()));
+
+	//button right
+	QObject::connect(button_right, SIGNAL(pressed()), thread, SLOT(moveRight()));
+	QObject::connect(button_up, SIGNAL(released()), thread, SLOT(stopYaw()));
+
 	thread->start();
 	
 	myWidget->show();

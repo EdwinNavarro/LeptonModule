@@ -32,7 +32,13 @@ public:
   void run();
 
 public slots:
-  void performFFC();
+  //void performFFC();
+  void moveRight();
+  void moveLeft();
+  void moveUp();
+  void moveDown();
+  void stopYaw(); // stops Left and right move
+  void stopPitch(); //stops Up and Down move
 
 signals:
   void updateText(QString);

@@ -5,6 +5,7 @@
 #include "Palettes.h"
 #include "SPI.h"
 #include "Lepton_I2C.h"
+#include <pigpio.h>
 
 #define PACKET_SIZE 164
 #define PACKET_SIZE_UINT16 (PACKET_SIZE/2)
@@ -273,10 +274,10 @@ void LeptonThread::run()
 	SpiClosePort(0);
 }
 
-void LeptonThread::performFFC() {
+//void LeptonThread::performFFC() {
 	//perform FFC
-	lepton_perform_ffc();
-}
+	//lepton_perform_ffc();
+//}
 
 void LeptonThread::log_message(uint16_t level, std::string msg)
 {
@@ -284,4 +285,61 @@ void LeptonThread::log_message(uint16_t level, std::string msg)
 		std::cerr << msg << std::endl;
 	}
 }
+//FIREBOT CODE STARTS HERE
+void LeptonThread::moveRight() {
+    // Initialize pigpio
+    if (gpioInitialise() < 0)
+    {
+        std::cerr << "Failed to initialize pigpio" << std::endl;
+        return 1;
+    }
+	    // Set GPIO pin 6 high
+    gpioWrite(6, 1);
+    std::cout << "moveRight()" << std::endl;
+}
 
+void LeptonThread::moveLeft() {
+    // Initialize pigpio
+    if (gpioInitialise() < 0)
+    {
+        std::cerr << "Failed to initialize pigpio" << std::endl;
+        return 1;
+    }
+	    // Set GPIO pin 5 high
+    gpioWrite(5, 1);
+    std::cout << "moveLeft()" << std::endl;
+}
+
+void LeptonThread::moveUp() {
+    // Initialize pigpio
+    if (gpioInitialise() < 0)
+    {
+        std::cerr << "Failed to initialize pigpio" << std::endl;
+        return 1;
+    }
+	    // Set GPIO pin 16 high
+    gpioWrite(16, 1);
+    std::cout << "moveUp()" << std::endl;
+}
+void LeptonThread::moveDown() {
+    // Initialize pigpio
+    if (gpioInitialise() < 0)
+    {
+        std::cerr << "Failed to initialize pigpio" << std::endl;
+        return 1;
+    }
+	    // Set GPIO pin 13 high
+    gpioWrite(13, 1);
+    std::cout << "moveDown()" << std::endl;
+}
+
+void LeptonThread::stopPitch(){
+	gpioWrite(13, 0);
+	gpioWrite(16, 0);
+	std::cout << "stopPitch()" << std::endl;
+}
+void LeptonThread::stopYaw(){
+	gpioWrite(5, 0);
+	gpioWrite(6, 0);
+	std::cout << "stopYaw()" << std::endl;
+}
