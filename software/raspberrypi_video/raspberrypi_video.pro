@@ -32,4 +32,4 @@ unix:QMAKE_CLEAN += -r $(OBJECTS_DIR) $${MOC_DIR}
 
 
 INCLUDEPATH += /usr/include/
-LIBS += -lpigpio 
+LIBS += -lpigpio -lrt -lpthread
