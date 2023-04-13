@@ -282,7 +282,7 @@ void LeptonThread::run()
 void LeptonThread::log_message(uint16_t level, std::string msg)
 {
 	if (level <= loglevel) {
-		std::cerr << msg << std::endl;
+		std::cout << msg << std::endl;
 	}
 }
 //FIREBOT CODE STARTS HERE
@@ -290,8 +290,7 @@ void LeptonThread::moveRight() {
     // Initialize pigpio
     if (gpioInitialise() < 0)
     {
-        std::cerr << "Failed to initialize pigpio" << std::endl;
-        return 1;
+        std::cout << "Failed to initialize pigpio" << std::endl;
     }
 	    // Set GPIO pin 6 high
     gpioWrite(6, 1);
@@ -302,8 +301,8 @@ void LeptonThread::moveLeft() {
     // Initialize pigpio
     if (gpioInitialise() < 0)
     {
-        std::cerr << "Failed to initialize pigpio" << std::endl;
-        return 1;
+        std::cout << "Failed to initialize pigpio" << std::endl;
+        
     }
 	    // Set GPIO pin 5 high
     gpioWrite(5, 1);
@@ -314,8 +313,8 @@ void LeptonThread::moveUp() {
     // Initialize pigpio
     if (gpioInitialise() < 0)
     {
-        std::cerr << "Failed to initialize pigpio" << std::endl;
-        return 1;
+        std::cout << "Failed to initialize pigpio" << std::endl;
+        
     }
 	    // Set GPIO pin 16 high
     gpioWrite(16, 1);
@@ -325,8 +324,8 @@ void LeptonThread::moveDown() {
     // Initialize pigpio
     if (gpioInitialise() < 0)
     {
-        std::cerr << "Failed to initialize pigpio" << std::endl;
-        return 1;
+        std::cout << "Failed to initialize pigpio" << std::endl;
+        
     }
 	    // Set GPIO pin 13 high
     gpioWrite(13, 1);
