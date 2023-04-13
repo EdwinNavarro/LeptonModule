@@ -133,7 +133,7 @@ int main( int argc, char **argv )
 	button_left->setGeometry(320 -150, 305, 30 , 30);
 
 	QPushButton *button_right = new QPushButton(">", myWidget);
-	button_top->setGeometry(320 -50, 305, 30 , 30);
+	button_right->setGeometry(320 -50, 305, 30 , 30);
 
 	QPushButton *button_down = new QPushButton("v", myWidget);
 	button_down->setGeometry(320 -100, 355, 30 , 30);
@@ -162,15 +162,15 @@ int main( int argc, char **argv )
 
 	//button down
 	QObject::connect(button_down, SIGNAL(pressed()), thread, SLOT(moveDown()));
-	QObject::connect(button_up, SIGNAL(released()), thread, SLOT(stopPitch()));
+	QObject::connect(button_down, SIGNAL(released()), thread, SLOT(stopPitch()));
 
 	//button left
 	QObject::connect(button_left, SIGNAL(pressed()), thread, SLOT(moveLeft()));
-	QObject::connect(button_up, SIGNAL(released()), thread, SLOT(stopYaw()));
+	QObject::connect(button_left, SIGNAL(released()), thread, SLOT(stopYaw()));
 
 	//button right
 	QObject::connect(button_right, SIGNAL(pressed()), thread, SLOT(moveRight()));
-	QObject::connect(button_up, SIGNAL(released()), thread, SLOT(stopYaw()));
+	QObject::connect(button_right, SIGNAL(released()), thread, SLOT(stopYaw()));
 
 	thread->start();
 	
