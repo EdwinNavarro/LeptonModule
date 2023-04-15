@@ -13,6 +13,13 @@
 #define FRAME_SIZE_UINT16 (PACKET_SIZE_UINT16*PACKETS_PER_FRAME)
 #define FPS 27;
 
+//FIREBOT VARIABLES
+const int CW_TURNTABLE  = 5;
+const int CCW_TURNTABLE = 6;
+const int PITCH_UP      = 13;
+const int PITCH_DOWN    = 16;
+const int SOLENOID_PIN  = 7;
+
 LeptonThread::LeptonThread() : QThread()
 {
 	//
@@ -292,8 +299,8 @@ void LeptonThread::moveRight() {
     {
         std::cout << "Failed to initialize pigpio" << std::endl;
     }
-	    // Set GPIO pin 6 high
-    gpioWrite(6, 1);
+	    // Set GPIO pin 5 high
+    gpioWrite(W_TURNTABLE, true);
     std::cout << "moveRight()" << std::endl;
 }
 
@@ -304,8 +311,8 @@ void LeptonThread::moveLeft() {
         std::cout << "Failed to initialize pigpio" << std::endl;
         
     }
-	    // Set GPIO pin 5 high
-    gpioWrite(5, 1);
+	    // Set GPIO pin 6 high
+    gpioWrite(CCW_TURNTABLE, true);
     std::cout << "moveLeft()" << std::endl;
 }
 
@@ -317,7 +324,7 @@ void LeptonThread::moveUp() {
         
     }
 	    // Set GPIO pin 16 high
-    gpioWrite(16, 1);
+    gpioWrite(PITCH_DOWN , 1);
     std::cout << "moveUp()" << std::endl;
 }
 void LeptonThread::moveDown() {
@@ -328,17 +335,33 @@ void LeptonThread::moveDown() {
         
     }
 	    // Set GPIO pin 13 high
-    gpioWrite(13, 1);
+    gpioWrite(PITCH_UP, 1);
     std::cout << "moveDown()" << std::endl;
 }
 
 void LeptonThread::stopPitch(){
-	gpioWrite(13, 0);
-	gpioWrite(16, 0);
+	gpioWrite(PITCH_UP, 0);
+	gpioWrite(PITCH_DOWN, 0);
 	std::cout << "stopPitch()" << std::endl;
 }
+
 void LeptonThread::stopYaw(){
-	gpioWrite(5, 0);
-	gpioWrite(6, 0);
+	gpioWrite(CW_TURNTABLE, 0);
+	gpioWrite(CCW_TURNTABLE, 0);
 	std::cout << "stopYaw()" << std::endl;
+}
+
+void LeptonThread::openValve(){
+	if (gpioInitialise() < 0)
+    {
+        std::cout << "Failed to initialize pigpio" << std::endl;
+        
+    }
+	gpioWrite(SOLENOID_PIN, 1);
+	std::cout << "openValve()" << std::endl;
+}
+
+void LeptonThread::closeValve(){
+	gpioWrite(SOLENOID_PIN, 0);
+	std::cout << "closeValve()" << std::endl;
 }

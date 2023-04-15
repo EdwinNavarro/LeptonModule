@@ -39,6 +39,8 @@ public slots:
   void moveDown();
   void stopYaw(); // stops Left and right move
   void stopPitch(); //stops Up and Down move
+  void openValve();
+  void closeValve();
 
 signals:
   void updateText(QString);

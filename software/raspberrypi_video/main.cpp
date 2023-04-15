@@ -12,6 +12,8 @@
 #include "LeptonThread.h"
 #include "MyLabel.h"
 
+const int SCALING_FACTOR = 2;
+
 void printUsage(char *cmd) {
         char *cmdname = basename(cmd);
 	printf("Usage: %s [OPTION]...\n"
@@ -103,12 +105,12 @@ int main( int argc, char **argv )
 	QApplication a( argc, argv );
 	
 	QWidget *myWidget = new QWidget;
-	myWidget->setGeometry(400, 300, 340, 400);
+	myWidget->setGeometry(400, 300, SCALING_FACTOR*340, SCALING_FACTOR*400);
 
 	//create an image placeholder for myLabel
 	//fill the top left corner with red, just bcuz
 	QImage myImage;
-	myImage = QImage(320, 240, QImage::Format_RGB888);
+	myImage = QImage(SCALING_FACTOR*320, SCALING_FACTOR*240, QImage::Format_RGB888);
 	QRgb red = qRgb(255,0,0);
 	for(int i=0;i<80;i++) {
 		for(int j=0;j<60;j++) {
@@ -118,7 +120,7 @@ int main( int argc, char **argv )
 
 	//create a label, and set it's image to the placeholder
 	MyLabel myLabel(myWidget);
-	myLabel.setGeometry(10, 10, 320, 240);
+	myLabel.setGeometry(SCALING_FACTOR*10, SCALING_FACTOR*10, SCALING_FACTOR*320, SCALING_FACTOR*240); //*** MODIFY TO INCREASE IMAGE SIZE
 	myLabel.setPixmap(QPixmap::fromImage(myImage));
 
 	//create a FFC button
@@ -126,17 +128,20 @@ int main( int argc, char **argv )
 //	button1->setGeometry(320/2-50, 290-35, 100, 30);
 
 	QPushButton *button_up = new QPushButton("^", myWidget);
-	button_up->setGeometry(320 -100, 255, 30 , 30);
-
+	button_up->setGeometry(SCALING_FACTOR*(320 -100),SCALING_FACTOR*( 255), SCALING_FACTOR*30 , SCALING_FACTOR*30);
 
 	QPushButton *button_left = new QPushButton("<", myWidget);
-	button_left->setGeometry(320 -150, 305, 30 , 30);
+	button_left->setGeometry(SCALING_FACTOR*(320 -150), SCALING_FACTOR*305, SCALING_FACTOR*30 , SCALING_FACTOR*30);
 
 	QPushButton *button_right = new QPushButton(">", myWidget);
-	button_right->setGeometry(320 -50, 305, 30 , 30);
+	button_right->setGeometry(SCALING_FACTOR*(320 -50), SCALING_FACTOR*305, SCALING_FACTOR*30 , SCALING_FACTOR*30);
 
 	QPushButton *button_down = new QPushButton("v", myWidget);
-	button_down->setGeometry(320 -100, 355, 30 , 30);
+	button_down->setGeometry(SCALING_FACTOR*(320 -100), SCALING_FACTOR*355, SCALING_FACTOR*30 , SCALING_FACTOR*30);
+
+	QPushButton *button_valve = new QPushButton("Blast", myWidget);
+	button_down->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*255, SCALING_FACTOR*60 , SCALING_FACTOR*30);
+
 
 	//create a thread to gather SPI data
 	//when the thread emits updateImage, the label should update its image accordingly
@@ -171,6 +176,10 @@ int main( int argc, char **argv )
 	//button right
 	QObject::connect(button_right, SIGNAL(pressed()), thread, SLOT(moveRight()));
 	QObject::connect(button_right, SIGNAL(released()), thread, SLOT(stopYaw()));
+
+	//button valve
+	QObject::connect(button_valve, SIGNAL(pressed()), thread, SLOT(openValve()));
+	QObject::connect(button_valve, SIGNAL(released()), thread, SLOT(closeValve()));
 
 	thread->start();
 	
