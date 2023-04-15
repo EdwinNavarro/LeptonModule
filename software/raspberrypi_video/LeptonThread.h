@@ -41,7 +41,7 @@ public slots:
   void stopPitch(); //stops Up and Down move
   void openValve();
   void closeValve();
-  void tempUpd()
+  void tempUpd();
 signals:
   void updateText(QString);
   void updateImage(QImage);

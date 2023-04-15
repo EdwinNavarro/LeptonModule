@@ -371,6 +371,5 @@ void LeptonThread::closeValve(){
 
 void LeptonThread::tempUpd()
 {
-	int tempValue = SAVE_TEMP
-	emit valueChanged(tempValue)
+	emit valueChanged(SAVE_TEMP);
 }
