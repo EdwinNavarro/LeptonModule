@@ -14,11 +14,12 @@
 #define FPS 27;
 
 //FIREBOT VARIABLES
-const int CW_TURNTABLE  = 5;
-const int CCW_TURNTABLE = 6;
-const int PITCH_UP      = 13;
-const int PITCH_DOWN    = 16;
-const int SOLENOID_PIN  = 7;
+static const int CW_TURNTABLE  = 5;
+static const int CCW_TURNTABLE = 6;
+static const int PITCH_UP      = 13;
+static const int PITCH_DOWN    = 16;
+static const int SOLENOID_PIN  = 7;
+static int SAVE_TEMP     = 0;
 
 LeptonThread::LeptonThread() : QThread()
 {
@@ -211,6 +212,8 @@ void LeptonThread::run()
 
 					//flip the MSB and LSB at the last second
 					uint16_t value = (shelf[iSegment - 1][i*2] << 8) + shelf[iSegment - 1][i*2+1];
+					//THIS IS WHERE THE ANALOG SIGNAL VALUES COMES INTO EFFECT
+					SAVE_TEMP = value;
 					if (value == 0) {
 						// Why this value is 0?
 						continue;
@@ -364,4 +367,10 @@ void LeptonThread::openValve(){
 void LeptonThread::closeValve(){
 	gpioWrite(SOLENOID_PIN, 0);
 	std::cout << "closeValve()" << std::endl;
+}
+
+void LeptonThread::tempUpd()
+{
+	int tempValue = SAVE_TEMP
+	emit valueChanged(tempValue)
 }

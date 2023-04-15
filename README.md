@@ -34,8 +34,8 @@ FIREBOT NOTES:
 to compile using command prompt
 1.  navigate to folder on raspberry pi 
     example cd Edwin/
-2. clone the repository accordingly (use the specific link)
-    sudo clone https://github.com/EdwinNavarro/LeptonModule
+2. clone the repository accordingly (use the specific link) and parent folder name
+    sudo clone https://github.com/EdwinNavarro/LeptonModule LeptonModule_v1.0.1
 3. access that folder using cd LeptonModule/software/raspberrypi_video
 4. run sudo make, note for this part one must have installed libraries and dependencies see the next link below.
 5. to run use sudo ./raspberrypi_video
