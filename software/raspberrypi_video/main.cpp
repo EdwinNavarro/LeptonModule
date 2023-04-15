@@ -140,7 +140,7 @@ int main( int argc, char **argv )
 	button_down->setGeometry(SCALING_FACTOR*(320 -100), SCALING_FACTOR*355, SCALING_FACTOR*30 , SCALING_FACTOR*30);
 
 	QPushButton *button_valve = new QPushButton("Blast", myWidget);
-	button_down->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*255, SCALING_FACTOR*60 , SCALING_FACTOR*30);
+	button_valve->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*255, SCALING_FACTOR*80 , SCALING_FACTOR*30);
 
 
 	//create a thread to gather SPI data
