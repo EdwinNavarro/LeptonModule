@@ -144,7 +144,7 @@ int main( int argc, char **argv )
 
 	//FIREBOT LABELS
 	QLabel *temp_label = new QLabel("Temperature", myWidget);
-	temp_label->setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30)
+	temp_label->setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30);
 
 
 	//create a thread to gather SPI data
