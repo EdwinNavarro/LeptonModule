@@ -28,8 +28,20 @@ See the wiki page for more information: https://github.com/groupgets/LeptonModul
 
 raspberrypi_video
 --------------
-This is for the Raspberry Pi, see this page for more information https://github.com/groupgets/LeptonModule/tree/master/software/raspberrypi_video
 
+
+FIREBOT NOTES:
+to compile using command prompt
+1.  navigate to folder on raspberry pi 
+    example cd Edwin/
+2. clone the repository accordingly (use the specific link)
+    sudo clone https://github.com/EdwinNavarro/LeptonModule
+3. access that folder using cd LeptonModule/software/raspberrypi_video
+4. run sudo make, note for this part one must have installed libraries and dependencies see the next link below.
+5. to run use sudo ./raspberrypi_video
+
+
+This is for the Raspberry Pi, see this page for more information https://github.com/groupgets/LeptonModule/tree/master/software/raspberrypi_video
 
 Software modules:
 

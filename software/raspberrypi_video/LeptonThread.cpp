@@ -300,7 +300,7 @@ void LeptonThread::moveRight() {
         std::cout << "Failed to initialize pigpio" << std::endl;
     }
 	    // Set GPIO pin 5 high
-    gpioWrite(W_TURNTABLE, true);
+    gpioWrite(CW_TURNTABLE, true);
     std::cout << "moveRight()" << std::endl;
 }
 
