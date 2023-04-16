@@ -130,7 +130,7 @@ int main( int argc, char **argv )
 //	button1->setGeometry(320/2-50, 290-35, 100, 30);
 	
 	QString text = QString("Temp %1").arg(1);
-	QLabel *myString = new QLabel(text);
+	QLabel *myString = new QLabel(text, myWidget);
 	myString->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*305,SCALING_FACTOR*80,SCALING_FACTOR*30);
 
 	QPushButton *button_up = new QPushButton("^", myWidget);
