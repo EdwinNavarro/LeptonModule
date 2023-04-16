@@ -212,14 +212,14 @@ void LeptonThread::run()
 
 					//flip the MSB and LSB at the last second
 					uint16_t value = (shelf[iSegment - 1][i*2] << 8) + shelf[iSegment - 1][i*2+1];
-					//THIS IS WHERE THE ANALOG SIGNAL VALUES COMES INTO EFFECT
-					SAVE_TEMP = value;
+					//THIS IS WHERE THE ANALOG SIGNAL VALUES COMES INTO EFFECT					
 					if (value == 0) {
 						// Why this value is 0?
 						continue;
 					}
 					if ((autoRangeMax == true) && (value > maxValue)) {
 						maxValue = value;
+						SAVE_TEMP = value;
 					}
 					if ((autoRangeMin == true) && (value < minValue)) {
 						minValue = value;
