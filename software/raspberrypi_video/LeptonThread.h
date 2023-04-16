@@ -63,6 +63,7 @@ private:
   int myImageWidth;
   int myImageHeight;
   QImage myImage;
+  QString text;
 
   uint8_t result[PACKET_SIZE*PACKETS_PER_FRAME];
   uint8_t shelf[4][PACKET_SIZE*PACKETS_PER_FRAME];
