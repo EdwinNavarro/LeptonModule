@@ -15,8 +15,7 @@ void MyLabel::setImage(QImage image) {
   setPixmap(pixmap.scaled(w, h, Qt::KeepAspectRatio));
 }
 
-void MyLabel::updTemp(QLabel text)
+void MyLabel::updTemp(QString text)
 {
-  QString newText = QString("Temp: %1").arg(value);
-  setText(newText);
+  setText(text);
 }

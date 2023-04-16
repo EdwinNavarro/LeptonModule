@@ -125,8 +125,7 @@ int main( int argc, char **argv )
 	myLabel.setGeometry(SCALING_FACTOR*10, SCALING_FACTOR*10, SCALING_FACTOR*320, SCALING_FACTOR*240); //*** MODIFY TO INCREASE IMAGE SIZE
 	myLabel.setPixmap(QPixmap::fromImage(myImage));
 
-	MyLabel tempUpd(myWidget);
-	tempUpd.setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30); 
+	
 	
 	//create a FFC button
 //	QPushButton *button1 = new QPushButton("Perform FFC", myWidget);
@@ -136,6 +135,10 @@ int main( int argc, char **argv )
 	QLabel *myString = new QLabel(text, myWidget);
 	myString->setFrameStyle(QFrame::Panel);
 	myString->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*305,SCALING_FACTOR*80,SCALING_FACTOR*30);
+
+	MyLabel tempUpd(myWidget);
+	tempUpd.setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30);
+	tempUpd.setFrameStyle(QFrame::Panel);
 
 	QPushButton *button_up = new QPushButton("^", myWidget);
 	button_up->setGeometry(SCALING_FACTOR*(320 -100),SCALING_FACTOR*( 255), SCALING_FACTOR*30 , SCALING_FACTOR*30);
@@ -195,7 +198,7 @@ int main( int argc, char **argv )
 	QObject::connect(button_valve, SIGNAL(pressed()), thread, SLOT(openValve()));
 	QObject::connect(button_valve, SIGNAL(released()), thread, SLOT(closeValve()));
 
-	QObject::connect(thread, SIGNAL(valueChanged(tempValue)), &tempUpd, SLOT(updTemp(text)));
+	QObject::connect(thread, SIGNAL(valueChanged(QString)), &tempUpd, SLOT(updTemp(QString)));
 	//	temp_label->setText(QString("Value: %1").arg(tempValue));;
    // });
 
