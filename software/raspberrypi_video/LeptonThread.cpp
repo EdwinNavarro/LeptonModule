@@ -371,6 +371,6 @@ void LeptonThread::closeValve(){
 
 void LeptonThread::tempUpd()
 {
-	text = QString("Temperature").arg(SAVE_TEMP)
+	text = QString("Temperature").arg(SAVE_TEMP);
 	emit valueChanged(text);
 }
