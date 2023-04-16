@@ -188,7 +188,7 @@ int main( int argc, char **argv )
 	QObject::connect(button_valve, SIGNAL(pressed()), thread, SLOT(openValve()));
 	QObject::connect(button_valve, SIGNAL(released()), thread, SLOT(closeValve()));
 
-	QObject::connect(thread, SIGNAL(valueChanged(tempValue)), &tempUpd, SLOT(updTemp(tempValue));
+	QObject::connect(thread, SIGNAL(valueChanged(tempValue)), &tempUpd, SLOT(updTemp(tempValue)));
 	//	temp_label->setText(QString("Value: %1").arg(tempValue));;
    // });
 
