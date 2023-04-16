@@ -131,10 +131,10 @@ int main( int argc, char **argv )
 //	QPushButton *button1 = new QPushButton("Perform FFC", myWidget);
 //	button1->setGeometry(320/2-50, 290-35, 100, 30);
 	
-	QString text = QString("Temp %1").arg(1);
-	QLabel *myString = new QLabel(text, myWidget);
-	myString->setFrameStyle(QFrame::Panel);
-	myString->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*305,SCALING_FACTOR*80,SCALING_FACTOR*30);
+	//QString text = QString("Temp %1").arg(1);
+	//QLabel *myString = new QLabel(text, myWidget);
+	//myString->setFrameStyle(QFrame::Panel);
+	//myString->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*305,SCALING_FACTOR*80,SCALING_FACTOR*30);
 
 	MyLabel tempUpd(myWidget);
 	tempUpd.setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30);
