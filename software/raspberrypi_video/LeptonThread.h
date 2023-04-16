@@ -45,7 +45,7 @@ public slots:
 signals:
   void updateText(QString);
   void updateImage(QImage);
-  void valueChanged(int tempValue); //not yet sure why
+  void valueChanged(int); //not yet sure why
 
 private:
 
