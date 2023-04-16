@@ -123,6 +123,9 @@ int main( int argc, char **argv )
 	myLabel.setGeometry(SCALING_FACTOR*10, SCALING_FACTOR*10, SCALING_FACTOR*320, SCALING_FACTOR*240); //*** MODIFY TO INCREASE IMAGE SIZE
 	myLabel.setPixmap(QPixmap::fromImage(myImage));
 
+	MyLabel tempUpd(myWidget);
+	tempUpd.setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30); 
+	
 	//create a FFC button
 //	QPushButton *button1 = new QPushButton("Perform FFC", myWidget);
 //	button1->setGeometry(320/2-50, 290-35, 100, 30);
@@ -143,8 +146,8 @@ int main( int argc, char **argv )
 	button_valve->setGeometry(SCALING_FACTOR*50, SCALING_FACTOR*255, SCALING_FACTOR*80 , SCALING_FACTOR*30);
 
 	//FIREBOT LABELS
-	QLabel *temp_label = new QLabel("Temperature", myWidget);
-	temp_label->setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30);
+	//QLabel *temp_label = new QLabel("Temperature", myWidget);
+	//temp_label->setGeometry(SCALING_FACTOR*50 , SCALING_FACTOR*305, SCALING_FACTOR*80, SCALING_FACTOR*30);
 
 
 	//create a thread to gather SPI data
@@ -162,8 +165,6 @@ int main( int argc, char **argv )
 	////connect ffc button to the thread's ffc action
 	//QObject::connect(button1, SIGNAL(clicked()), thread, SLOT(performFFC()));
 	
-	
-   
 
 	//FIREBOT BUTTONS
 
@@ -187,16 +188,16 @@ int main( int argc, char **argv )
 	QObject::connect(button_valve, SIGNAL(pressed()), thread, SLOT(openValve()));
 	QObject::connect(button_valve, SIGNAL(released()), thread, SLOT(closeValve()));
 
-	QObject::connect(thread, SIGNAL(valueChanged(tempValue)), temp_label, [&](int tempValue) {
-        temp_label->setText(QString("Value: %1").arg(tempValue));
-    });
+	QObject::connect(thread, SIGNAL(valueChanged(tempValue)), &tempUpd, SLOT(updTemp(tempValue));
+	//	temp_label->setText(QString("Value: %1").arg(tempValue));;
+   // });
 
 	thread->start();
 	
 	myWidget->show();
 
     QTimer *timer = new QTimer();
-    QObject::connect(timer, &QTimer::timeout, thread, SLOT(tempUpd());
+    QObject::connect(timer, &QTimer::timeout, thread, SLOT(tempUpd()));
     timer->start(500); // Change value every .5 second
 
 

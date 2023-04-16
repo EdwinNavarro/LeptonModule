@@ -19,6 +19,7 @@ class MyLabel : public QLabel {
 
   public slots:
     void setImage(QImage);
+    void updTemp(int value);
 };
 
 #endif
