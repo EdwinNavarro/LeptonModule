@@ -195,7 +195,7 @@ int main( int argc, char **argv )
 	QObject::connect(button_valve, SIGNAL(pressed()), thread, SLOT(openValve()));
 	QObject::connect(button_valve, SIGNAL(released()), thread, SLOT(closeValve()));
 
-	QObject::connect(thread, SIGNAL(valueChanged(tempValue)), &tempUpd, SLOT(updTemp(tempValue)));
+	QObject::connect(thread, SIGNAL(valueChanged(tempValue)), &tempUpd, SLOT(updTemp(text)));
 	//	temp_label->setText(QString("Value: %1").arg(tempValue));;
    // });
 
@@ -203,8 +203,8 @@ int main( int argc, char **argv )
 	
 	myWidget->show();
 
-    QTimer *timer = new QTimer();
-    QObject::connect(timer, &QTimer::timeout, thread, SLOT(tempUpd()));
+    QTimer *timer = new QTimer(myWidget);
+    QObject::connect(timer, SIGNAL(timeout()), thread, SLOT(tempUpd()));
     timer->start(500); // Change value every .5 second
 
 

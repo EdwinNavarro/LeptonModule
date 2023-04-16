@@ -43,7 +43,7 @@ public slots:
   void closeValve();
   void tempUpd();
 signals:
-  void updateText(QString);
+  //void updateText(QString);
   void updateImage(QImage);
   void valueChanged(int); //not yet sure why
 
