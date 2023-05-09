@@ -360,12 +360,12 @@ void LeptonThread::openValve(){
         std::cout << "Failed to initialize pigpio" << std::endl;
         
     }
-	gpioWrite(SOLENOID_PIN, 1);
+	gpioWrite(SOLENOID_PIN, 0);
 	std::cout << "openValve()" << std::endl;
 }
 
 void LeptonThread::closeValve(){
-	gpioWrite(SOLENOID_PIN, 0);
+	gpioWrite(SOLENOID_PIN, 1);
 	std::cout << "closeValve()" << std::endl;
 }
 
